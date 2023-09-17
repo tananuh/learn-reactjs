@@ -1,0 +1,12 @@
+.AlbumList {
+    & > li {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-flow: column;
+    }
+
+    & img{
+        width: auto;
+        height: auto;
+    }
+}
