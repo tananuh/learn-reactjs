@@ -1,5 +1,6 @@
 import './App.css';
 import {
+  Navigate,
   NavLink,
   Routes,
   Route
@@ -16,6 +17,7 @@ function App() {
       <br></br>
       <NavLink to='albums' className={(navData) => (navData.isActive ? "current-page" : 'none')}>Album</NavLink>
       <Routes>
+        <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="/todos" element={<TodoFeature />} />
         <Route path="/albums" element={<AlbumFeature />} />
       </Routes>
