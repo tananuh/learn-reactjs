@@ -10,6 +10,7 @@ import productApi from './api/productApi'
 import categoryApi from './api/categoryApi'
 import AlbumFeature from './features/Album';
 import TodoFeature from './features/Todo';
+import CounterFeature from './features/Counter';
 
 function App() {
   useEffect(() => {
@@ -29,8 +30,11 @@ function App() {
       <NavLink to='todos' className={(navData) => (navData.isActive ? "current-page" : 'none')}>Todo</NavLink>
       <br></br>
       <NavLink to='albums' className={(navData) => (navData.isActive ? "current-page" : 'none')}>Album</NavLink>
+      <br></br>
+      <NavLink to='counter' className={(navData) => (navData.isActive ? "current-page" : 'none')}>Counter</NavLink>
       <Routes>
         <Route path="/home" element={<Navigate to="/" replace />} />
+        <Route path="/counter" element={<CounterFeature />} />
         <Route path="/todos" element={<TodoFeature />} />
         <Route path="/albums" element={<AlbumFeature />} />
       </Routes>
