@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react'
 import PropTypes from 'prop-types';
 import TodoList from './components/TodoList';
+import {useSelector } from 'react-redux';
 TodoFeature.propTypes = {
     
 };
@@ -22,6 +23,8 @@ function TodoFeature(props) {
             status: 'new'
         },
     ];
+
+    const user = useSelector(state => state.user);
 
     const [todoList, setTodoList] = useState(initTodoList);
     const [filteredStatus, setFilteredStatus] = useState('all');
@@ -49,17 +52,27 @@ function TodoFeature(props) {
 
     const renderTodoList = todoList.filter(todo => filteredStatus === 'all' || filteredStatus === todo.status);
 
+
+    if(user!=="") {
+        return(
+            <div>
+                <h3>
+                    Todo List
+                </h3>
+                <TodoList todoList ={renderTodoList} onTodoClick={handleTodoClick} />
+                <div className="actions">
+                    <button onClick={handleShowAllClick}>Show All</button>
+                    <button onClick={handleShowCompletedClick}>Show Completed</button>
+                    <button onClick={handleShowNewClick}>Show New</button>
+                </div>
+            </div>
+        );
+    }
     return(
         <div>
-            <h3>
-                Todo List
-            </h3>
-            <TodoList todoList ={renderTodoList} onTodoClick={handleTodoClick} />
-            <div className="actions">
-                <button onClick={handleShowAllClick}>Show All</button>
-                <button onClick={handleShowCompletedClick}>Show Completed</button>
-                <button onClick={handleShowNewClick}>Show New</button>
-            </div>
+            <span>
+                You must login to see the Todo List
+            </span>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AlbumList from './components/Album';
+import {useSelector } from 'react-redux';
 import './styles.scss';
 AlbumFeature.propTypes = {
     
@@ -22,12 +23,22 @@ function AlbumFeature(props) {
             thumbnailUrl: 'https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/2/4/5/3/24538985249cd4d3b324b4a4a09ad288.jpg'
         },
     ];
-    return (
+    const user = useSelector(state => state.user);
+    if(user!=="") {
+        return (
+            <div>
+                <h3>
+                    Album List
+                </h3>
+                <AlbumList albumList ={albumList}/>
+            </div>
+        );
+    }
+    return(
         <div>
-            <h3>
-                Album List
-            </h3>
-            <AlbumList albumList ={albumList}/>
+            <span>
+                You must login to see the Album List
+            </span>
         </div>
     );
 }

@@ -11,6 +11,7 @@ import categoryApi from './api/categoryApi'
 import AlbumFeature from './features/Album';
 import TodoFeature from './features/Todo';
 import CounterFeature from './features/Counter';
+import UserFeature from './features/User';
 
 function App() {
   useEffect(() => {
@@ -25,7 +26,8 @@ function App() {
   }, [])
   return (
     <div className="App">
-      Homepage
+      {<UserFeature />}
+      <NavLink to='' className={(navData) => (navData.isActive ? "current-page" : 'none')}>Home</NavLink>
       <br></br>
       <NavLink to='todos' className={(navData) => (navData.isActive ? "current-page" : 'none')}>Todo</NavLink>
       <br></br>
