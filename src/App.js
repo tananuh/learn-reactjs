@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useEffect} from 'react';
+import {
+  Navigate,
+  NavLink,
+  Routes,
+  Route
+} from "react-router-dom";
+import productApi from './api/productApi'
+import ProductFeature from './features/Product';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
 
 function App() {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const params = {
+        _limit: 10
+      };
+      const productList =  await productApi.getAll(params);
+      console.log(productList)
+    }
+    fetchProducts();
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <NavLink to='products/' className={(navData) => (navData.isActive ? "current-page" : 'none')}>Product</NavLink>
+
+      <Routes>
+        <Route path="/home" element={<Navigate to="/" replace />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products/" element={<ProductFeature />} />
+      </Routes>
+
     </div>
   );
 }
