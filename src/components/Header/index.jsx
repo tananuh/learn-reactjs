@@ -1,20 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { NavLink, useResolvedPath } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import { NavLink} from "react-router-dom";
+import {AppBar, Box, Button, Typography, Toolbar, ListItemText, ListItemButton, ListItem, List, IconButton, CssBaseline, Divider, Drawer} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 
 Header.propTypes = {
   window: PropTypes.func,
@@ -47,7 +35,7 @@ function Header(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.code} disablePadding>
             <NavLink to={item.code} className={(navData) => (navData.isActive ? "current-page" : 'none')}>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText primary={item.name} />
@@ -85,8 +73,8 @@ function Header(props) {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <NavLink to={item.code} className={(navData) => (navData.isActive ? "current-page" : 'none')}>
-                <Button key={item} sx={{ color: "#fff" }}>
+              <NavLink key={item.code} to={item.code} className={(navData) => (navData.isActive ? "current-page" : 'none')}>
+                <Button sx={{ color: "#fff" }}>
                   {item.name}
                 </Button>
               </NavLink>
@@ -114,6 +102,7 @@ function Header(props) {
           {drawer}
         </Drawer>
       </nav>
+      <Toolbar />
     </Box>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Box, Typography} from "@mui/material";
 
 HomePage.propTypes = {
     
@@ -7,9 +8,13 @@ HomePage.propTypes = {
 
 function HomePage(props) {
     return (
-        <div>
-            Home Page
-        </div>
+        <Box sx={{
+            backgroundColor: 'rgb(244,244,244)'
+          }}>
+            <Typography>
+                Home Page
+            </Typography>
+        </Box> 
     );
 }
 
