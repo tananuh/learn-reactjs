@@ -11,20 +11,19 @@ FilterByPrice.propTypes = {
 const useStyles = makeStyles((theme) => ({
     root: {
         padding: useTheme().spacing(2),
-        textAlign: 'left'
+        textAlign: 'left',
+        borderTop: `1px solid ${useTheme().palette.grey[300]}`,
     },
-    menu: {
-        padding: '0',
-        margin: '0',
-        listStyleType: 'none',
+    range: {
+        display: 'flex',
+        flexFlow: 'row nowrap',
+        alignItems: 'center' ,
         marginTop: useTheme().spacing(1),
-        transition: "all .25s",
-        '& li': {
-            '&:hover': {
-                cursor:'pointer',
-                color: useTheme().palette.primary.main
-            }
-        }
+        marginBottom: useTheme().spacing(1),
+        '& span': {
+            marginLeft: useTheme().spacing(1),
+            marginRight: useTheme().spacing(1),
+        },
     },
 }))
 
@@ -52,12 +51,12 @@ function FilterByPrice({onChange}) {
         <Typography variant='subtitle1'>
             Price
         </Typography>
-        <Box>
-            <TextField name='salePrice_gte' value={values.salePrice_gte} onChange={handleChange} />
+        <Box className={classes.range}>
+            <TextField name='salePrice_gte' variant="standard" value={values.salePrice_gte} onChange={handleChange} />
             -
-            <TextField name='salePrice_lte' value={values.salePrice_lte} onChange={handleChange} />
+            <TextField name='salePrice_lte' variant="standard" value={values.salePrice_lte} onChange={handleChange} />
         </Box>
-        <Button variant='outlined' color='primary' onClick={handleSubmit} >Apply</Button>
+        <Button variant='outlined' color='primary' onClick={handleSubmit} size='small' >Apply</Button>
     </Box>
     );
 }
