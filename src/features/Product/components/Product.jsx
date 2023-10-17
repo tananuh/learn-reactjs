@@ -1,20 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Skeleton, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from '../../../constants';
 
+const useStyles = makeStyles(theme => ({
+    img: {
+        height: '150px;',
+        objectFit: 'contain',
+    }
+}))
 
 Product.propTypes = {
     product: PropTypes.object,
 };
 
 function Product({product}) {
+    const classes = useStyles();
+    const thumbnailUrl = product.thumbnail? `${STATIC_HOST}${product.thumbnail.url}` : `${THUMBNAIL_PLACEHOLDER}`;
     return (
         <div>
-            {product.name}
             <Box padding={1}>
-                <Skeleton variant="rectangular" width="100%" height={118} />
-                <Typography variant='body2'>{product.name}</Typography>
-                <Typography variant='body2'>{product.salePrice} -{product.promotionPercent}%</Typography>
+                <Box>
+                    <img className={classes.img} alt={product.name} width="100%" src={thumbnailUrl} />
+                </Box>
+                <Typography variant='body2' align="left">{product.name}</Typography>
+                <Typography variant='body2' align="left">
+                    <Box component="span" fontSize="16px" fontWeight="bold" mr={1}>
+                        {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.salePrice)}
+                    </Box>
+                    
+                    {product.promotionPercent>0?`-${product.promotionPercent}%`:""}
+                </Typography>
             </Box>
         </div>
     );

@@ -1,0 +1,2 @@
+export const STATIC_HOST = 'https://api.ezfrontend.com';
+export const THUMBNAIL_PLACEHOLDER = 'https://i0.wp.com/thinkfirstcommunication.com/wp-content/uploads/2022/05/placeholder-1-1.png?w=1200&ssl=1';
