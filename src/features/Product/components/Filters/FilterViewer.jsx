@@ -28,7 +28,7 @@ const FILTER_LIST = [
         onToggle: (filters) => {
             const newFilters = {...filters};
             if(newFilters.isFreeShip) {
-                newFilters.isFreeShip = false;
+                newFilters.isFreeShip = null;
             } else {
                 newFilters.isFreeShip = true;
             }
@@ -69,22 +69,22 @@ const FILTER_LIST = [
         },
         onToggle: null,
     },
-    // {
-    //     id: 4,
-    //     getLabel: (filters) => `${filters.category.id}`,
-    //     isActive: () => true,
-    //     isVisible: (filters) => {
-    //         return filters.category.id
-    //     },
-    //     isRemovable: true,
-    //     onRemove: (filters) => {
-    //         const newFilters = {...filters};
+    {
+        id: 4,
+        getLabel: (filters) => `${filters['category.id']}`,
+        isActive: () => true,
+        isVisible: (filters) => {
+            return filters['category.id']
+        },
+        isRemovable: true,
+        onRemove: (filters) => {
+            const newFilters = {...filters};
 
-    //         newFilters.category.id = null;
-    //         return newFilters;
-    //     },
-    //     onToggle: null,
-    // }
+            newFilters['category.id'] = null;
+            return newFilters;
+        },
+        onToggle: null,
+    }
 ];
 
 FilterViewer.propTypes = {

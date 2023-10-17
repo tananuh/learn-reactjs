@@ -17,11 +17,18 @@ function ProductFilter({filters, onChange}) {
             ...filters,
             "category.id": newCategoryId
         }
+        console.log(newFilters)
         onChange(newFilters)
     }
 
     const handleChange = (values) => {
+        
         onChange(values)
+        const newFilters = {
+            ...filters,
+            ...values
+        }
+        onChange(newFilters)
     }
     return (
         <Box>
