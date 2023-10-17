@@ -5,12 +5,14 @@ import {Box, Paper, Grid, Container, Pagination} from '@mui/material';
 import productApi from '../../../api/productApi';
 import ProductSkeletonList from '../components/ProductSkeletonList';
 import ProductList from '../components/ProductList';
+import ProductSort from '../components/ProductSort';
+import ProductFilter from '../components/ProductFilter';
 
 ListPage.propTypes = {
     
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {},
     left: {
         width: '250px'
@@ -19,9 +21,13 @@ const useStyles = makeStyles(theme => ({
         flex: '1 1 0'
     },
     pagination: {
+        marginTop: '20px',
         '& ul':{
             justifyContent: 'center'
-        }
+        },
+    },
+    paper_right: {
+        paddingBottom: "20px"
     }
 }))
 
@@ -35,7 +41,8 @@ function ListPage(props) {
     });
     const [filters, setFilter] = useState({
         _page: 1,
-        _limit: 12
+        _limit: 12,
+        _sort: "salePrice:ASC"
     });
     useEffect(() => { 
         (async () => {
@@ -59,6 +66,20 @@ function ListPage(props) {
         }))
     }
 
+    const handleSortChange = (newSortValue) => {
+        setLoading(true);
+        setFilter(prevFilters => ({
+            ...prevFilters,
+            _sort: newSortValue
+        }))
+    }
+    const handleFilterChange = (newFilters) => {
+        setLoading(true);
+        setFilter(prevFilters => ({
+            ...prevFilters,
+            ...newFilters
+        }))
+    }
     
     const classes = useStyles();
     return (
@@ -67,11 +88,12 @@ function ListPage(props) {
                 <Grid container spacing ={1}>
                     <Grid item className={classes.left}>
                         <Paper elevation={0}>
-                            Left Column
+                            <ProductFilter filters={filters} onChange={handleFilterChange} />
                         </Paper>
                     </Grid>
                     <Grid item className={classes.right}>
-                        <Paper elevation={0}>
+                        <Paper elevation={0} className={classes.paper_right}>
+                            <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
                             {loading? <ProductSkeletonList />:<ProductList data={productList} />}
                             <Pagination color="primary" count={Math.ceil(pagination.total / pagination.limit)} page={pagination.page} className={classes.pagination} onChange={handlePageChange}></Pagination>
                         </Paper>

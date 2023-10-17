@@ -6,7 +6,6 @@ import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from '../../../constants';
 
 const useStyles = makeStyles(theme => ({
     img: {
-        height: '150px;',
         objectFit: 'contain',
     }
 }))
@@ -21,7 +20,7 @@ function Product({product}) {
     return (
         <div>
             <Box padding={1}>
-                <Box>
+                <Box minHeight="215px">
                     <img className={classes.img} alt={product.name} width="100%" src={thumbnailUrl} />
                 </Box>
                 <Typography variant='body2' align="left">{product.name}</Typography>
