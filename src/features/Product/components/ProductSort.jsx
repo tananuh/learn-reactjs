@@ -18,10 +18,10 @@ function ProductSort({currentSort, onChange}) {
             textColor="secondary"
             indicatorColor="secondary"
         >
-            <Tab label="Highest" value="salePrice:ASC">
+            <Tab label="Lowest to Highest" value="salePrice:ASC">
 
             </Tab>
-            <Tab label="Lowest" value="salePrice:DESC">
+            <Tab label="Lowest to Highest" value="salePrice:DESC">
                 
             </Tab>
         </Tabs>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Button, Checkbox, FormControlLabel, TextField, Typography, useTheme } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, Typography, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 FilterByService.propTypes = {
     filters: PropTypes.object,

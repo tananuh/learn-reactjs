@@ -34,7 +34,7 @@ function FilterByPrice({onChange}) {
         salePrice_lte: 0
     });
     const handleSubmit = () => {
-        if(onChange) {
+        if(onChange && parseInt(values.salePrice_gte) < parseInt(values.salePrice_lte)) {
             onChange(values);
         }  
     };

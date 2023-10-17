@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { Box, Container, Grid, Pagination, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import {Box, Paper, Grid, Container, Pagination} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import productApi from '../../../api/productApi';
-import ProductSkeletonList from '../components/ProductSkeletonList';
-import ProductList from '../components/ProductList';
-import ProductSort from '../components/ProductSort';
 import ProductFilter from '../components/ProductFilter';
+import ProductList from '../components/ProductList';
+import ProductSkeletonList from '../components/ProductSkeletonList';
+import ProductSort from '../components/ProductSort';
+import FilterViewer from '../components/Filters/FilterViewer';
 
 ListPage.propTypes = {
     
@@ -75,6 +75,9 @@ function ListPage(props) {
     }
     const handleFilterChange = (newFilters) => {
         setLoading(true);
+        setFilter(newFilters);
+    }
+    const setNewFilter = (newFilters) => {
         setFilter(prevFilters => ({
             ...prevFilters,
             ...newFilters
@@ -89,11 +92,13 @@ function ListPage(props) {
                     <Grid item className={classes.left}>
                         <Paper elevation={0}>
                             <ProductFilter filters={filters} onChange={handleFilterChange} />
+                            
                         </Paper>
                     </Grid>
                     <Grid item className={classes.right}>
                         <Paper elevation={0} className={classes.paper_right}>
                             <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
+                            <FilterViewer filters={filters} onChange={setNewFilter} />
                             {loading? <ProductSkeletonList />:<ProductList data={productList} />}
                             <Pagination color="primary" count={Math.ceil(pagination.total / pagination.limit)} page={pagination.page} className={classes.pagination} onChange={handlePageChange}></Pagination>
                         </Paper>
