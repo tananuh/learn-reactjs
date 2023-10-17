@@ -1,12 +1,13 @@
 import { Box, Container, Grid, Pagination, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import productApi from '../../../api/productApi';
+import FilterViewer from '../components/Filters/FilterViewer';
 import ProductFilter from '../components/ProductFilter';
 import ProductList from '../components/ProductList';
 import ProductSkeletonList from '../components/ProductSkeletonList';
 import ProductSort from '../components/ProductSort';
-import FilterViewer from '../components/Filters/FilterViewer';
 
 ListPage.propTypes = {
     
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 function ListPage(props) {
     const [productList, setProductList] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchParams, setSearchParams] = useSearchParams();
     const [pagination, setPagination] = useState({
         page: 1,
         limit: 12,
@@ -44,6 +46,11 @@ function ListPage(props) {
         _limit: 12,
         _sort: "salePrice:ASC"
     });
+
+    useEffect(() => { 
+        setSearchParams(filters);
+    }, [setSearchParams, filters]);
+
     useEffect(() => { 
         (async () => {
             try {
