@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Pagination, Paper } from '@mui/material';
+import { Box, Container, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -8,6 +8,7 @@ import ProductFilter from '../components/ProductFilter';
 import ProductList from '../components/ProductList';
 import ProductSkeletonList from '../components/ProductSkeletonList';
 import ProductSort from '../components/ProductSort';
+import Pagination from '../../../components/Pagination';
 
 ListPage.propTypes = {
     
@@ -65,7 +66,7 @@ function ListPage(props) {
     }, [filters]);
 
 
-    const handlePageChange = (e, page) => {
+    const handlePageChange = (page) => {
         setLoading(true);
         setFilter(prevFilters => ({
             ...prevFilters,
@@ -107,7 +108,7 @@ function ListPage(props) {
                             <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
                             <FilterViewer filters={filters} onChange={setNewFilter} />
                             {loading? <ProductSkeletonList />:<ProductList data={productList} />}
-                            <Pagination color="primary" count={Math.ceil(pagination.total / pagination.limit)} page={pagination.page} className={classes.pagination} onChange={handlePageChange}></Pagination>
+                            <Pagination count={Math.ceil(pagination.total / pagination.limit)} page={pagination.page} onChange={handlePageChange} />
                         </Paper>
                     </Grid>
                 </Grid>          
