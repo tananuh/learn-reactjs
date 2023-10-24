@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, TextField, Typography, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import './FilterByPrice.css';
 
 FilterByPrice.propTypes = {
     onChange: PropTypes.func
@@ -52,9 +53,9 @@ function FilterByPrice({onChange}) {
             Price
         </Typography>
         <Box className={classes.range}>
-            <TextField name='salePrice_gte' variant="standard" value={values.salePrice_gte} onChange={handleChange} />
+            <input className="price-input" name="salePrice_gte" type="number" value={values.salePrice_gte} onChange={handleChange} />
             -
-            <TextField name='salePrice_lte' variant="standard" value={values.salePrice_lte} onChange={handleChange} />
+            <input className="price-input" name="salePrice_lte" type="number" value={values.salePrice_lte} onChange={handleChange} />
         </Box>
         <Button variant='outlined' color='primary' onClick={handleSubmit} size='small' >Apply</Button>
     </Box>

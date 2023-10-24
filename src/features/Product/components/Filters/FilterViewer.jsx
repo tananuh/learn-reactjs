@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Chip, useTheme } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import Chip from '../../../../components/Chip';
 
 const useStyles = makeStyles((theme) => ({
     root: {

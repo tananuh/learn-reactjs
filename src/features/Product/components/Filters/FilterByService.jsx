@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel, Typography, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -41,17 +41,12 @@ function FilterByService({filters = {}, onChange}) {
             <ul className={classes.list}>
                 {[{value:'isPromotion', label:"Promotion"}, {value:'isFreeShip', label:"Free Ship"}].map(service => 
                     <li key={service.value}>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={Boolean(filters[service.value])}
-                                    onChange={handleChange}
-                                    name= {service.value}
-                                    color = "primary"
-                                />
-                            }
-                            label={service.label}
-                        />
+                        <div>
+                            <input type="checkbox" name={service.value} checked={Boolean(filters[service.value])} onChange={handleChange} />
+                            <span>
+                                {service.label}
+                            </span>
+                        </div>
                     </li>    
                 )}
             </ul>
