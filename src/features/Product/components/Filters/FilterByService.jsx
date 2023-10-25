@@ -30,7 +30,7 @@ function FilterByService({filters = {}, onChange}) {
     const handleChange = (e) => {
         if(!onChange) return;
         const {name, checked} = e.target;
-        onChange({[name]: checked})
+        onChange({[name]: checked?true:null})
     }
     return (
         <Box className={classes.root}>
