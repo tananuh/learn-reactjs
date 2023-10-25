@@ -21,7 +21,7 @@ function ProductSort({currentSort, onChange}) {
             <Tab label="Lowest to Highest" value="salePrice:ASC">
 
             </Tab>
-            <Tab label="Lowest to Highest" value="salePrice:DESC">
+            <Tab label="Highest to Lowest" value="salePrice:DESC">
                 
             </Tab>
         </Tabs>
