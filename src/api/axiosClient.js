@@ -1,10 +1,13 @@
 import axios from "axios";
 import { STATIC_HOST } from "../constants";
+import { TOKEN } from "../constants"
 
 const axiosClient = axios.create({
     baseURL: `${STATIC_HOST}`,
     headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${TOKEN}`
+
     }
 });
 

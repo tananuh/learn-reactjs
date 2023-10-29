@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Grid, Skeleton } from '@mui/material';
 
-ProductSkeletonList.propTypes = {
+SchoolSkeletonList.propTypes = {
     length: PropTypes.number
 };
 
-ProductSkeletonList.defaultProps = {
+SchoolSkeletonList.defaultProps = {
     length: 12
 }
 
-function ProductSkeletonList({length}) {
+function SchoolSkeletonList({length}) {
     return (
         <Box>
             <Grid container>
@@ -28,4 +28,4 @@ function ProductSkeletonList({length}) {
     );
 }
 
-export default ProductSkeletonList;
+export default SchoolSkeletonList;

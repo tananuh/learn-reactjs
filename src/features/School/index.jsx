@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import ListPage from './pages/ListPage';
 import {Box} from "@mui/material";
 
-ProductFeature.propTypes = {
+SchoolFeature.propTypes = {
     
 };
 
-function ProductFeature(props) {
+function SchoolFeature(props) {
     
     return (
         <Box pt={4} sx={{
@@ -19,4 +19,4 @@ function ProductFeature(props) {
     );
 }
 
-export default ProductFeature;
+export default SchoolFeature;
