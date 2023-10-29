@@ -34,12 +34,12 @@ function ListPage(props) {
     const [loading, setLoading] = useState(true);
     const [pagination, setPagination] = useState({
         page: 1,
-        limit: 10,
+        limit: 12,
         total: 120,
     });
     const [filters, setFilter] = useState({
         page: 1,
-        limit: 10
+        limit: 12
     });
 
 
